@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kahoot.it</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-sm-12 center">
+                <h2>Attack a Kahoot lobby</h2>
+                <p>Please insert the gameid.</p>
+                <input type="number" id="number" class="form-control" placeholder="Game id">
+                <br>
+                <p>Bot name (Leave empty for randomized)</p>
+                <input type="text" id="botname" class="form-control" placeholder="Insert bot name">
+                <br>
+                <p>Press the "join" button and the bots will begin joining your lobby.</p>
+                <button class="btn btn-danger" id="submit">Join</button>
+                <br>
+            </div>
+     
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-sm-12 center">
+                <h5 class="align-self-center mr-3">Latest attacks</h5>
+                <textarea class="form-control">WIJDAJID</textarea>
+             </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://127.0.0.1:8000');
+        var number = document.getElementById('number');
+        var botname = document.getElementById('botname');
+        var submit = document.getElementById('submit');
+        
+        submit.addEventListener('click', function(e){
+            console.log('Spam button was clicked. Sending information to the server!');
+
+            socket.emit('submit', {
+                number: number.value,
+                name: botname.value
+            });
+        });
+        </script>
+</body>

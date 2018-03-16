@@ -1,0 +1,26 @@
+{
+  "name": "kahoot-bot",
+  "version": "1.0.0",
+  "description": "A kahoot join games bot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Kahoot-bot"
+  },
+  "keywords": [
+    "kahootbot",
+    "bot",
+    "kahoot",
+    "spambotkahoot",
+    "spam"
+  ],
+  "author": "Olle Thunberg",
+  "license": "ISC",
+  "dependencies": {
+    "kahoot.js": "^1.0.0",
+    "socket.io": "^2.0.4"
+  }
+}
