@@ -1,6 +1,7 @@
 const Kahoot = require('./export.js');
 var listen = require('socket.io').listen(4000).sockets;
 var mongo = require('mongodb').MongoClient;
+const random_name = require('node-random-name');
 
 var client = new Kahoot;
 
@@ -34,16 +35,16 @@ console.log('Kahoot-Bot is now running.');
 
        });
     }); 
-var joinGameIndex = 0;
+var start = false;
 function joinGame (name, num){
- client.join(num, name+joinGameIndex);        
+    
+ client.join(num, random_name());        
     client.on("joined", () => {
-        console.log('Joined with the username: ' + name+joinGameIndex);
-    joinGameIndex++;
-    client.join(num, name+joinGameIndex);
-    client.on("joined", () => {
-     });
+        console.log('Joined the game.');
 
-     
+    client.join(num, random_name());
+    client.on("joined", () => {
+     });  
+
 });
 } 
