@@ -21,6 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "kahoot.js": "^1.0.0",
-    "socket.io": "^2.0.4"
+    "mongodb": "^3.0.4",
+    "socket.io": "^2.0.3"
   }
 }

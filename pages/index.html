@@ -13,12 +13,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3 col-sm-12 center">
-                <h2>Attack a Kahoot lobby</h2>
+                <h2>Select a Kahoot lobby</h2>
                 <p>Please insert the gameid.</p>
-                <input type="number" id="number" class="form-control" placeholder="Game id">
+                <input type="number" id="number" class="form-control" placeholder="Game Code">
                 <br>
                 <p>Bot name (Leave empty for randomized)</p>
-                <input type="text" id="botname" class="form-control" placeholder="Insert bot name">
+                <input type="text" id="botname" class="form-control" placeholder="Name for the bots">
                 <br>
                 <p>Press the "join" button and the bots will begin joining your lobby.</p>
                 <button class="btn btn-danger" id="submit">Join</button>
@@ -28,25 +28,59 @@
         </div>
         <div class="row">
             <div class="col-md-6 offset-md-3 col-sm-12 center">
-                <h5 class="align-self-center mr-3">Latest attacks</h5>
-                <textarea class="form-control">WIJDAJID</textarea>
+                <h5 class="align-self-center mr-3">Latest spam</h5>
+                <div class="card">
+                    <div id="latest" class="card-block">
+
+                    </div>
+                </div>
+                <!--- <textarea class="form-control" id="latest" readonly style="height: 300px"></textarea> -->
              </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script>
-        var socket = io.connect('http://127.0.0.1:8000');
+        (function(){
+        var socket = io.connect('http://127.0.0.1:4000');
         var number = document.getElementById('number');
         var botname = document.getElementById('botname');
         var submit = document.getElementById('submit');
-        
-        submit.addEventListener('click', function(e){
-            console.log('Spam button was clicked. Sending information to the server!');
+        var feed = document.getElementById('latest');
+
+        if(socket !== undefined){
+ submit.addEventListener('click', function(e){
+            console.log('Sending info to server!');
 
             socket.emit('submit', {
                 number: number.value,
                 name: botname.value
             });
+
         });
+            socket.on('feed', function(data){
+                if(data.length){
+                    for (var x = 0; x < data.length; x++){
+                        var div  = document.createElement('div');
+                        div.setAttribute('class', 'chat-message');
+                        div.textContent = "Sent bot to game: " +data[x].message;
+
+                        feed.appendChild(div);
+                        feed.insertBefore(div, feed.firstChild);
+                        //feed.value = feed.value + 'Latest spam: ' + data[x].message + '\n';
+                    }
+                }
+                else {
+                   // feed.value = feed.value + 'Latest spam: ' + data.message + '\n';
+                     var div  = document.createElement('div');
+                        div.setAttribute('class', 'chat-message');
+                        div.textContent = "Sent bot to game: " +data.message;
+
+                        feed.appendChild(div);
+                        feed.insertBefore(div, feed.firstChild);
+                }
+            });
+        }
+       })();
+
         </script>
 </body>
