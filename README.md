@@ -10,6 +10,7 @@ The bot is only made for testing purposes and not for ruining / destroying lobbi
 
 
  ## Preview
-![gif](https://user-images.githubusercontent.com/7386785/37556379-6a66283a-29f5-11e8-8056-ec29da854692.gif)
+![giphy](https://user-images.githubusercontent.com/7386785/37556446-7ee1ff86-29f6-11e8-89db-5cdc3d14ad8d.gif)
+
 
 A good looking UI that works!
